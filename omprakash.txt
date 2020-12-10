@@ -1,0 +1,242 @@
+Solution 1) To create a simple XML document to display the address book.
+<?xml version = "1.0" encoding="UTF-8" standalone="yes" ?> 
+<addressbook> 
+	<First> 
+		<name>Prakash</name> 
+		<doorno>No-5</doorno> 
+		<street>Mosque Street</street> 
+		<area>Saidapet</area> 
+		<city>Chennai-600015</city> 
+		<state>Tamil Nadu</state> 
+		<country>India</country> 
+		<phoneno>8124133809</phoneno> 
+	</First> 
+	<Second> 
+		<name>Om </name> 
+		<doorno>No-5</doorno> 
+		<street>Mosque Street</street> 
+		<area>Saidapet</area> 
+		<city>Chennai-600015</city> 
+		<state>Tamil Nadu</state> 
+		<country>India</country> 
+		<phoneno>8124133809</phoneno> 
+	</Second> 
+</addressbook> 
+ 
+==============================================================
+Solution 2) To create a xml document and database for importing and exporting xml document into database
+
+<?xml version = "1.0" encoding="UTF-8" standalone="yes" ?> 
+<student-data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<record> 
+		<Name>Prakash</Name> 
+		<Age>36</Age> 
+		<Major>CSE</Major> 
+		<GPA>7.8</GPA> 
+	</record> 
+	<record> 
+		<Name>Honest</Name> 
+		<Age>23</Age> 
+		<Major>Civil</Major> 
+		<GPA>6.5</GPA> 
+	</record> 
+</student-data> 
+================================================================================
+
+Solution 3) To create a simple XSLT transformation from XSL to XML
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="cdcatalog.xsl"?>
+<catalog>
+  <cd>
+    <title>Empire Burlesque</title>
+    <artist>Bob Dylan</artist>
+    <country>USA</country>
+    <company>Columbia</company>
+    <price>10.90</price>
+    <year>1985</year>
+  </cd>
+</catalog>
+-----------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+  <html>
+  <body>
+  <h2>Album New</h2>
+  <table border="1">
+    <tr bgcolor="#9acd32">
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Country</th>
+      <th>Company</th>
+      <th>Price</th>
+      <th>Year</th>
+    </tr>
+    <xsl:for-each select="catalog/cd">
+    <tr>
+      <td><xsl:value-of select="title"/></td>
+      <td><xsl:value-of select="artist"/></td>
+      <td><xsl:value-of select="country"/></td>
+      <td><xsl:value-of select="company"/></td>
+      <td><xsl:value-of select="price"/></td>
+      <td><xsl:value-of select="year"/></td>
+    </tr>
+    </xsl:for-each>
+  </table>
+  </body>
+  </html>
+</xsl:template>
+
+</xsl:stylesheet>
+===============================================================================
+Solution 4)  Create a XSD and DTD for Student information as given below xml document.
+<?xml version="1.0" encoding="UTF-8"?>
+
+<shiporder orderid="889923" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="task423.xsd">
+  <orderperson>John Smith</orderperson>
+  <shipto>
+    <name>Ola Nordmann</name>
+    <address>Langgt 23</address>
+    <city>4000 Stavanger</city>
+    <country>Norway</country>
+  </shipto>
+  <item>
+    <title>Empire Burlesque</title>
+    <note>Special Edition</note>
+    <quantity>1</quantity>
+    <price>10.90</price>
+  </item>
+  <item>
+    <title>Hide your heart</title>
+    <quantity>1</quantity>
+    <price>9.90</price>
+  </item>
+</shiporder>
+
+--------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- definition of simple elements -->
+<xs:element name="orderperson" type="xs:string"/>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="address" type="xs:string"/>
+<xs:element name="city" type="xs:string"/>
+<xs:element name="country" type="xs:string"/>
+<xs:element name="title" type="xs:string"/>
+<xs:element name="note" type="xs:string"/>
+<xs:element name="quantity" type="xs:positiveInteger"/>
+<xs:element name="price" type="xs:decimal"/>
+
+<!-- definition of attributes -->
+<xs:attribute name="orderid" type="xs:string"/>
+
+<!-- definition of complex elements -->
+<xs:element name="shipto">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="name"/>
+      <xs:element ref="address"/>
+      <xs:element ref="city"/>
+      <xs:element ref="country"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="item">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="title"/>
+      <xs:element ref="note" minOccurs="0"/>
+      <xs:element ref="quantity"/>
+      <xs:element ref="price"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="shiporder">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="orderperson"/>
+      <xs:element ref="shipto"/>
+      <xs:element ref="item" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="orderid" use="required"/>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>
+===============================================================================
+Solution 5) 5.Create XML document which store the information about Library/Bookstore. more than 5 books.
+
+<bookstore> 
+	<book category="Comic">
+    	  <title>A</title>
+      	<author>Prakash</author>
+     	 <year>2010</year>
+      	<price>2500</price>
+   	</book>
+
+	<book category="Fiction">
+    	  <title>B</title>
+      	<author>Karthick</author>
+     	 <year>2020</year>
+      	<price>3000</price>
+   	</book>
+
+	<book category="Action">
+    	  <title>C</title>
+      	<author>Vivek</author>
+     	 <year>2015</year>
+      	<price>2000</price>
+   	</book>
+
+	<book category="Love">
+    	  <title>D</title>
+      	<author>Dodje</author>
+     	 <year>2019</year>
+      	<price>5000</price>
+   	</book>
+	
+	<book category="Romantic">
+    	  <title>E</title>
+      	<author>Ericson</author>
+     	 <year>2018</year>
+      	<price>3000</price>
+   	</book>
+</bookstore>
+===============================================================
+Solution 6) Create XML document which store the information about employee.
+
+	<employees>
+		<emp1>
+			<eno> 100</eno>
+			<ename>Prakash</ename>
+		</emp1>
+		<emp2>
+			<eno>101</eno>
+			<ename>Vivek</ename>
+		</emp2>
+		<emp3>
+			<eno> 102</eno>
+			<ename>Babu</ename>
+		</emp3>
+		<emp4>
+			<eno> 103</eno>
+			<ename>Arun</ename>
+		</emp4>
+		<emp5>
+			<eno> 104</eno>
+			<ename> Om</ename>
+		</emp5>
+
+	</employees>
+
+
+
+
+
